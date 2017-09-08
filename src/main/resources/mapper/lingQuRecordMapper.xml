@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hu.dianying.repository.LingQuRecordRepository">
+    <resultMap id="m_ling_qu_record" type="com.hu.dianying.domain.LingQuRecord">
+        <id column="f_id" property="id"/>
+        <result column="f_weixin_no" property="weixinNo"/>
+        <result column="f_code" property="code"/>
+        <result column="f_time" property="time"/>
+    </resultMap>
+    <insert id="create"
+            parameterType="com.hu.dianying.domain.LingQuRecord">insert into m_ling_qu_record ( f_id,f_weixin_no,f_code,f_time) values (#{id,jdbcType=INTEGER},#{weixinNo,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{time,jdbcType=BIGINT})</insert>
+    <select id="findByWeixinNo" resultMap="m_ling_qu_record">select * from m_ling_qu_record where f_weixin_no=#{weixinNo}</select>
+    <select id="getMaxId" resultType="int">select IFNULL(max(f_id),10000) FROM m_ling_qu_record</select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hu.dianying.repository.TuiGuangRecordRepository">
+    <resultMap id="m_tui_guang_record" type="com.hu.dianying.domain.TuiGuangRecord">
+        <id column="f_id" property="id"/>
+        <result column="f_weixin_no" property="weixinNo"/>
+        <result column="f_father_no" property="fatherNo"/>
+        <result column="f_time" property="time"/>
+        <result column="f_code" property="code"/>
+    </resultMap>
+    <insert id="create" parameterType="com.hu.dianying.domain.TuiGuangRecord">
+insert into m_tui_guang_record ( f_id,f_weixin_no,f_father_no,f_time,f_code)
+values (#{id,jdbcType=INTEGER},#{weixinNo,jdbcType=VARCHAR},#{fatherNo,jdbcType=VARCHAR},
+#{time,jdbcType=BIGINT},#{code,jdbcType=VARCHAR})</insert>
+    <select id="list" resultMap="m_tui_guang_record">
+select * from m_tui_guang_record order by f_id limit #{start},#{size}
+</select>
+    <select id="listByFatherNo" resultMap="m_tui_guang_record">
+        select * from m_tui_guang_record where f_father_no=#{fatherNo} order by f_id limit #{start},#{size}
+    </select>
+    <select id="findById" resultMap="m_tui_guang_record">select * from m_tui_guang_record where f_id=#{id}</select>
+    <select id="findByCode" resultMap="m_tui_guang_record">select * from m_tui_guang_record where f_code=#{code}</select>
+    <select id="findByWeixinNo" resultMap="m_tui_guang_record">select * from m_tui_guang_record where f_weixin_no=#{weixinNo}</select>
+    <select id="getCount" resultType="int">select count(f_id) FROM m_tui_guang_record</select>
+    <select id="getCountByFatherNo" resultType="int">select count(f_id) FROM m_tui_guang_record where f_father_no=#{weixinNo}</select>
+    <select id="getMaxId" resultType="int">select IFNULL(max(f_id),10000) FROM m_tui_guang_record</select>
+</mapper>

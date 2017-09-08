@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hu.dianying.repository.LingQuMaRepository">
+    <resultMap id="m_ling_qu_ma" type="com.hu.dianying.domain.LingQuMa">
+        <id column="f_id" property="id"/>
+        <result column="f_code" property="code"/>
+        <result column="f_used" property="used"/>
+        <result column="f_time" property="time"/>
+    </resultMap>
+    <insert id="create" parameterType="com.hu.dianying.domain.LingQuMa">
+insert into m_ling_qu_ma ( f_id,f_code,f_used,f_time)
+values (#{id,jdbcType=INTEGER},#{code,jdbcType=VARCHAR},#{used,jdbcType=TINYINT},#{time,jdbcType=BIGINT})
+</insert>
+    <insert id="createList" parameterType="com.hu.dianying.domain.LingQuMa">
+        insert into m_ling_qu_ma ( f_id,f_code,f_used,f_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+        (#{item.id,jdbcType=INTEGER},#{item.code,jdbcType=VARCHAR},#{item.used,jdbcType=TINYINT},#{item.time,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+    <update id="update" parameterType="com.hu.dianying.domain.LingQuMa">
+update m_ling_qu_ma set f_used=#{used,jdbcType=TINYINT},f_time=#{time,jdbcType=BIGINT}
+where f_code=#{code}</update>
+    <select id="list" resultMap="m_ling_qu_ma">select * from m_ling_qu_ma order by f_used,f_id limit #{start},#{size}</select>
+    <select id="findById" resultMap="m_ling_qu_ma">select * from m_ling_qu_ma where f_id=#{id}</select>
+    <select id="findByCode" resultMap="m_ling_qu_ma">select * from m_ling_qu_ma where f_code=#{code}</select>
+    <select id="getCount" resultType="int">select count(f_id) FROM m_ling_qu_ma</select>
+    <select id="getMaxId" resultType="int">select IFNULL(max(f_id),10000) FROM m_ling_qu_ma</select>
+</mapper>

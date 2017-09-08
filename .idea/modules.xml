@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dianying.iml" filepath="$PROJECT_DIR$/.idea/modules/dianying.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dianying_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dianying_main.iml" group="dianying" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dianying_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dianying_test.iml" group="dianying" />
+    </modules>
+  </component>
+</project>
